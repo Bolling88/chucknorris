@@ -14,10 +14,12 @@
  * limitations under the License.
  */
 
-package app.bolling.chucknorris.joke;
+package app.bolling.chucknorris.ui;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.LiveDataReactiveStreams;
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.os.Bundle;
@@ -28,7 +30,8 @@ import app.bolling.chucknorris.BasicApp;
 import app.bolling.chucknorris.DataRepository;
 import app.bolling.chucknorris.SingleLiveEvent;
 import app.bolling.chucknorris.database.model.JokeEntity;
-import io.reactivex.Observable;
+import io.reactivex.Flowable;
+import io.reactivex.schedulers.Schedulers;
 
 public class JokeViewModel extends AndroidViewModel {
 
@@ -38,8 +41,10 @@ public class JokeViewModel extends AndroidViewModel {
     //single live events
     private SingleLiveEvent<String> toastEvent = new SingleLiveEvent<>();
     private SingleLiveEvent<Integer> loadingVisibilityEvent = new SingleLiveEvent<>();
+    private SingleLiveEvent<Integer> buttonVisibilityEvent = new SingleLiveEvent<>();
 
     private final Bundle arguments;
+    private JokeEntity viewedJoke;
 
     public JokeViewModel(@NonNull Application application, DataRepository repository,
                          final Bundle arguments) {
@@ -52,25 +57,54 @@ public class JokeViewModel extends AndroidViewModel {
      * Expose the LiveData Comments query so the UI can observe it.
      */
 
-    public Observable<JokeEntity> getObservableJoke() {
-        return repository.getJoke(arguments.getInt(JokeFragment.KEY_JOKE_ID));
+    public LiveData<JokeEntity> getObservableJoke() {
+        Flowable<JokeEntity> flowable = repository.getJoke()
+                .doAfterNext(joke -> viewedJoke = joke)
+                .doOnSubscribe(subscription -> {
+                    //when the user subscribes for the first time, we also fetch a joke from the server
+                    repository.loadNewJoke();
+                }).doOnTerminate(() -> {
+                    loadingVisibilityEvent.setValue(View.GONE);
+                    buttonVisibilityEvent.setValue(View.VISIBLE);
+                }).subscribeOn(Schedulers.io());
+
+        //always return it as live data since it is life cycle aware
+        return LiveDataReactiveStreams.fromPublisher(flowable);
     }
 
     public void onJokeUpdated(JokeEntity joke) {
-        if(joke == null){
+        if (joke == null) {
             toastEvent.setValue("Joke was null");
-        }else {
+        } else {
             toastEvent.setValue("Joke retrieved");
         }
         loadingVisibilityEvent.setValue(View.GONE);
     }
 
-    public SingleLiveEvent<String> getObservableToast(){
+    public SingleLiveEvent<String> getObservableToast() {
         return toastEvent;
     }
 
-    public SingleLiveEvent<Integer> getObservableLoadingVisibility(){
+    public SingleLiveEvent<Integer> getLoadingVisibilityEvent() {
         return loadingVisibilityEvent;
+    }
+
+    public SingleLiveEvent<Integer> getButtonVisibilityEvent() {
+        return buttonVisibilityEvent;
+    }
+
+
+    public void onNextJokeClicked() {
+        loadingVisibilityEvent.setValue(View.VISIBLE);
+        buttonVisibilityEvent.setValue(View.GONE);
+        repository.loadNewJoke();
+    }
+
+    public void onJokeRead() {
+        if (viewedJoke != null) {
+            viewedJoke.setRead(true);
+            repository.saveJoke(viewedJoke);
+        }
     }
 
     /**

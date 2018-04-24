@@ -29,14 +29,15 @@ import io.reactivex.Maybe;
 
 @Dao
 public interface JokeDao {
-    @Query("SELECT * FROM jokes")
-    Flowable<List<JokeEntity>> getAllQuestions();
+    @Query("SELECT * FROM jokes where read = 0")
+    Flowable<JokeEntity> getUnreadJokes();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(List<JokeEntity> jokes);
 
+    //return type long, means it will also return the id
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(JokeEntity joke);
+    long insert(JokeEntity joke);
 
     @Query("select * from jokes where id = :jokeId")
     Maybe<JokeEntity> getJoke(int jokeId);

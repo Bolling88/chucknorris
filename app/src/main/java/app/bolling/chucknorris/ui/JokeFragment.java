@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package app.bolling.chucknorris.joke;
+package app.bolling.chucknorris.ui;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
@@ -28,7 +28,6 @@ import android.widget.Toast;
 
 import app.bolling.chucknorris.R;
 import app.bolling.chucknorris.databinding.FragmentMainBinding;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 
 public class JokeFragment extends Fragment {
 
@@ -59,17 +58,22 @@ public class JokeFragment extends Fragment {
         final JokeViewModel model = ViewModelProviders.of(this, factory)
                 .get(JokeViewModel.class);
 
+        mBinding.button.setOnClickListener(v -> {
+            model.onNextJokeClicked();
+        });
+
         //now we can hook up the observables to the view model
         setUpObservables(model);
     }
 
     private void setUpObservables(JokeViewModel model) {
-        //Observe joke
-        model.getObservableJoke().observeOn(AndroidSchedulers.mainThread()).subscribe(comicEntity -> {
+        //LiveData observable
+        model.getObservableJoke().observe(this, jokeEntity -> {
             //let the view model also get the latest product
-            model.onJokeUpdated(comicEntity);
+            model.onJokeUpdated(jokeEntity);
             //handle UI updates
-            mBinding.textJoke.setText(comicEntity.getValue());
+            mBinding.textJoke.setText(jokeEntity.getValue());
+            model.onJokeRead();
         });
 
         //observe toast events
@@ -78,8 +82,12 @@ public class JokeFragment extends Fragment {
         });
 
         //observe loading visibility events
-        model.getObservableLoadingVisibility().observe(this, visibility -> {
-            mBinding.frameLoading.setVisibility(visibility);
+        model.getLoadingVisibilityEvent().observe(this, visibility -> {
+            mBinding.progress.setVisibility(visibility);
+        });
+
+        model.getButtonVisibilityEvent().observe(this, visibility -> {
+            mBinding.button.setVisibility(visibility);
         });
     }
 

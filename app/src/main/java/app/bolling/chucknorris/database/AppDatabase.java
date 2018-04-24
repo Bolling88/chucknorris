@@ -27,7 +27,7 @@ import app.bolling.chucknorris.database.converter.DateConverter;
 import app.bolling.chucknorris.database.dao.JokeDao;
 import app.bolling.chucknorris.database.model.JokeEntity;
 
-@Database(entities = {JokeEntity.class}, version = 1, exportSchema = false)
+@Database(entities = {JokeEntity.class}, version = 3, exportSchema = false)
 @TypeConverters(DateConverter.class)
 public abstract class AppDatabase extends RoomDatabase {
 
@@ -55,6 +55,6 @@ public abstract class AppDatabase extends RoomDatabase {
      * The SQLite database is only created when it's accessed for the first time.
      */
     private static AppDatabase buildDatabase(final Context appContext) {
-        return Room.databaseBuilder(appContext, AppDatabase.class, DATABASE_NAME).build();
+        return Room.databaseBuilder(appContext, AppDatabase.class, DATABASE_NAME).fallbackToDestructiveMigration().build();
     }
 }

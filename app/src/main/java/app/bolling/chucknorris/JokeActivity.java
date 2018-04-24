@@ -17,7 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import app.bolling.chucknorris.databinding.ActivityJokeBinding;
-import app.bolling.chucknorris.joke.JokeFragment;
+import app.bolling.chucknorris.ui.JokeFragment;
 
 public class JokeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

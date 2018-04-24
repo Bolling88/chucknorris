@@ -1,7 +1,5 @@
 package app.bolling.chucknorris;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 import app.bolling.chucknorris.database.AppDatabase;
@@ -24,6 +22,7 @@ public class DataRepository {
     Retrofit retorfit;
 
     private final AppDatabase mDatabase;
+    private long lastInsertedId;
 
     private DataRepository(final AppDatabase database) {
         BasicApp.component.inject(this);
@@ -43,37 +42,31 @@ public class DataRepository {
     }
 
     /**
-     * Get the list of products from the database and get notified when the data changes.
-     */
-    public Flowable<List<JokeEntity>> getAllQuestions() {
-        return mDatabase.comicDao().getAllQuestions();
-    }
-
-    /**
      * Will merge the two observables and then call onComplete
-     * @param comicId
+     *
      * @return an observable
      */
-    public Observable<JokeEntity> getJoke(final int comicId) {
+    public Flowable<JokeEntity> getJoke() {
         //just the the first one to return. Should be the DB, if the DB have any value
-        return Observable.merge(
-                getJokeFromDatabase(comicId),
-                getJokeFromApi()).take(1);
+        return mDatabase.comicDao().getUnreadJokes();
     }
 
-    private Observable<JokeEntity> getJokeFromApi() {
+    private void fetchJokeFromApi() {
         TwitterApi service = retorfit.create(TwitterApi.class);
-        return service.getJoke()
+        service.getJoke()
                 .subscribeOn(Schedulers.io())
-                .doAfterNext((jokeEntity) -> mDatabase.comicDao().insert(jokeEntity));
+                .subscribe(joke -> lastInsertedId = mDatabase.comicDao().insert(joke));
     }
 
-    private Observable<JokeEntity> getJokeFromDatabase(int comicId) {
-        return mDatabase.comicDao().getJoke(comicId).toObservable().subscribeOn(Schedulers.io());
+    public void saveJoke(JokeEntity joke) {
+        Observable.just(joke)
+                .observeOn(Schedulers.io())
+                .doOnNext(jokeEntity -> mDatabase.comicDao().insert(jokeEntity))
+                .subscribe();
     }
 
-    public void saveJoke(JokeEntity comic) {
-        mDatabase.comicDao().insert(comic);
+    public void loadNewJoke() {
+        fetchJokeFromApi();
     }
 
     private interface TwitterApi {
