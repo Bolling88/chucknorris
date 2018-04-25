@@ -6,7 +6,7 @@
         android:id="@+id/layout_parent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="app.bolling.chucknorris.JokeActivity">
+        tools:context="app.bolling.chucknorris.ui.JokeActivity">
 
         <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
@@ -27,14 +27,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"></FrameLayout>
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="@dimen/fab_margin"
-            app:srcCompat="@android:drawable/ic_dialog_email" />
 
     </android.support.design.widget.CoordinatorLayout>
 </layout>

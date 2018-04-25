@@ -18,27 +18,17 @@ public class DataRepository {
     private static final String TAG = "DataRepository";
     private static DataRepository sInstance;
 
-    @Inject
-    Retrofit retorfit;
+    private Retrofit retrofit;
 
     private final AppDatabase mDatabase;
     private long lastInsertedId;
+    private Flowable newJokeFlowable;
 
-    private DataRepository(final AppDatabase database) {
+    @Inject
+    public DataRepository(AppDatabase database, Retrofit retorfit) {
         BasicApp.component.inject(this);
-
         mDatabase = database;
-    }
-
-    public static DataRepository getInstance(final AppDatabase database) {
-        if (sInstance == null) {
-            synchronized (DataRepository.class) {
-                if (sInstance == null) {
-                    sInstance = new DataRepository(database);
-                }
-            }
-        }
-        return sInstance;
+        this.retrofit = retorfit;
     }
 
     /**
@@ -48,20 +38,21 @@ public class DataRepository {
      */
     public Flowable<JokeEntity> getJoke() {
         //just the the first one to return. Should be the DB, if the DB have any value
-        return mDatabase.comicDao().getUnreadJokes();
+        return mDatabase.jokeDao().getUnreadJokes()
+                .subscribeOn(Schedulers.io());
     }
 
     private void fetchJokeFromApi() {
-        TwitterApi service = retorfit.create(TwitterApi.class);
+        TwitterApi service = retrofit.create(TwitterApi.class);
         service.getJoke()
                 .subscribeOn(Schedulers.io())
-                .subscribe(joke -> lastInsertedId = mDatabase.comicDao().insert(joke));
+                .subscribe(joke -> lastInsertedId = mDatabase.jokeDao().insert(joke));
     }
 
     public void saveJoke(JokeEntity joke) {
         Observable.just(joke)
                 .observeOn(Schedulers.io())
-                .doOnNext(jokeEntity -> mDatabase.comicDao().insert(jokeEntity))
+                .doOnNext(jokeEntity -> mDatabase.jokeDao().insert(jokeEntity))
                 .subscribe();
     }
 

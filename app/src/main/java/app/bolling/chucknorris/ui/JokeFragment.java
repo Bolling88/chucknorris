@@ -16,7 +16,6 @@
 
 package app.bolling.chucknorris.ui;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -26,13 +25,27 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import javax.inject.Inject;
+
+import app.bolling.chucknorris.BasicApp;
 import app.bolling.chucknorris.R;
+import app.bolling.chucknorris.ResourceUtil;
 import app.bolling.chucknorris.databinding.FragmentMainBinding;
 
 public class JokeFragment extends Fragment {
 
     public static final String KEY_JOKE_ID = "product_id";
     private FragmentMainBinding mBinding;
+
+    @Inject
+    ResourceUtil resources;
+    @Inject JokeViewModel model;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        BasicApp.component.inject(this);
+    }
 
     @Nullable
     @Override
@@ -50,17 +63,12 @@ public class JokeFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        //create factory, used to inject dependencies to the view model
-        JokeViewModel.Factory factory = new JokeViewModel.Factory(
-                getActivity().getApplication(), getArguments());
-
         //create or reference the view model with the above factory
-        final JokeViewModel model = ViewModelProviders.of(this, factory)
-                .get(JokeViewModel.class);
+//        final JokeViewModel model = ViewModelProviders.of(this, factory)
+//                .get(JokeViewModel.class);
 
-        mBinding.button.setOnClickListener(v -> {
-            model.onNextJokeClicked();
-        });
+        mBinding.button.setOnClickListener(v -> model.onNextJokeClicked());
+        mBinding.fab.setOnClickListener(view -> model.onFavoriteClicked());
 
         //now we can hook up the observables to the view model
         setUpObservables(model);
@@ -70,7 +78,7 @@ public class JokeFragment extends Fragment {
         //LiveData observable
         model.getObservableJoke().observe(this, jokeEntity -> {
             //let the view model also get the latest product
-            model.onJokeUpdated(jokeEntity);
+            model.onJokeUpdated();
             //handle UI updates
             mBinding.textJoke.setText(jokeEntity.getValue());
             model.onJokeRead();

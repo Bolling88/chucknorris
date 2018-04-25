@@ -40,6 +40,7 @@ public class JokeEntity {
     @Expose
     private String value;
     private boolean read;
+    private boolean favourite;
 
     public String getIconUrl() {
         return iconUrl;
@@ -79,5 +80,13 @@ public class JokeEntity {
 
     public void setRead(boolean read) {
         this.read = read;
+    }
+
+    public boolean isFavourite() {
+        return favourite;
+    }
+
+    public void setFavourite(boolean favourite) {
+        this.favourite = favourite;
     }
 }

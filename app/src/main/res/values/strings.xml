@@ -10,4 +10,6 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="loading_joke">Loading joke...</string>
     <string name="next_joke">Next Joke</string>
+    <string name="removed_from_favourites">Removed from favourites</string>
+    <string name="removed_added_to_favourites">Added to favourites</string>
 </resources>

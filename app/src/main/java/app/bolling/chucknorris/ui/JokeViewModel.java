@@ -20,22 +20,23 @@ import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.LiveDataReactiveStreams;
-import android.arch.lifecycle.ViewModel;
-import android.arch.lifecycle.ViewModelProvider;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
 
-import app.bolling.chucknorris.BasicApp;
+import javax.inject.Inject;
+
 import app.bolling.chucknorris.DataRepository;
+import app.bolling.chucknorris.R;
+import app.bolling.chucknorris.ResourceUtil;
 import app.bolling.chucknorris.SingleLiveEvent;
 import app.bolling.chucknorris.database.model.JokeEntity;
 import io.reactivex.Flowable;
-import io.reactivex.schedulers.Schedulers;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 
 public class JokeViewModel extends AndroidViewModel {
 
     private final DataRepository repository;
+    private final ResourceUtil resources;
 
 
     //single live events
@@ -43,14 +44,13 @@ public class JokeViewModel extends AndroidViewModel {
     private SingleLiveEvent<Integer> loadingVisibilityEvent = new SingleLiveEvent<>();
     private SingleLiveEvent<Integer> buttonVisibilityEvent = new SingleLiveEvent<>();
 
-    private final Bundle arguments;
     private JokeEntity viewedJoke;
 
-    public JokeViewModel(@NonNull Application application, DataRepository repository,
-                         final Bundle arguments) {
+    @Inject
+    public JokeViewModel(@NonNull Application application, DataRepository repository, ResourceUtil resources) {
         super(application);
         this.repository = repository;
-        this.arguments = arguments;
+        this.resources = resources;
     }
 
     /**
@@ -59,26 +59,20 @@ public class JokeViewModel extends AndroidViewModel {
 
     public LiveData<JokeEntity> getObservableJoke() {
         Flowable<JokeEntity> flowable = repository.getJoke()
-                .doAfterNext(joke -> viewedJoke = joke)
-                .doOnSubscribe(subscription -> {
-                    //when the user subscribes for the first time, we also fetch a joke from the server
-                    repository.loadNewJoke();
-                }).doOnTerminate(() -> {
+                .doOnSubscribe(subscription -> repository.loadNewJoke())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnNext(jokeEntity -> {
+                    viewedJoke = jokeEntity;
                     loadingVisibilityEvent.setValue(View.GONE);
                     buttonVisibilityEvent.setValue(View.VISIBLE);
-                }).subscribeOn(Schedulers.io());
+                });
 
         //always return it as live data since it is life cycle aware
         return LiveDataReactiveStreams.fromPublisher(flowable);
     }
 
-    public void onJokeUpdated(JokeEntity joke) {
-        if (joke == null) {
-            toastEvent.setValue("Joke was null");
-        } else {
-            toastEvent.setValue("Joke retrieved");
-        }
-        loadingVisibilityEvent.setValue(View.GONE);
+    public void onJokeUpdated() {
+
     }
 
     public SingleLiveEvent<String> getObservableToast() {
@@ -107,28 +101,13 @@ public class JokeViewModel extends AndroidViewModel {
         }
     }
 
-    /**
-     * A creator is used to inject dependencies into the view model
-     */
-    public static class Factory extends ViewModelProvider.NewInstanceFactory {
-
-        @NonNull
-        private final Application mApplication;
-
-        private final Bundle mBundle;
-
-        private final DataRepository mRepository;
-
-        public Factory(@NonNull Application application, Bundle bundle) {
-            mApplication = application;
-            mBundle = bundle;
-            mRepository = ((BasicApp) application).getRepository();
-        }
-
-        @Override
-        public <T extends ViewModel> T create(Class<T> modelClass) {
-            //noinspection unchecked
-            return (T) new JokeViewModel(mApplication, mRepository, mBundle);
+    public void onFavoriteClicked() {
+        if (viewedJoke != null) {
+            if (viewedJoke.isFavourite()) {
+                toastEvent.setValue(resources.getString(R.string.removed_from_favourites));
+            } else {
+                toastEvent.setValue(resources.getString(R.string.removed_added_to_favourites));
+            }
         }
     }
 }
