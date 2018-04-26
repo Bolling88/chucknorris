@@ -36,17 +36,10 @@ public class DataRepository {
      *
      * @return an observable
      */
-    public Flowable<JokeEntity> getJoke() {
+    public Flowable<JokeEntity> getJoke(String jokeId) {
         //just the the first one to return. Should be the DB, if the DB have any value
-        return mDatabase.jokeDao().getUnreadJokes()
+        return mDatabase.jokeDao().getJoke(jokeId)
                 .subscribeOn(Schedulers.io());
-    }
-
-    private void fetchJokeFromApi() {
-        TwitterApi service = retrofit.create(TwitterApi.class);
-        service.getJoke()
-                .subscribeOn(Schedulers.io())
-                .subscribe(joke -> lastInsertedId = mDatabase.jokeDao().insert(joke));
     }
 
     public void saveJoke(JokeEntity joke) {
@@ -56,8 +49,11 @@ public class DataRepository {
                 .subscribe();
     }
 
-    public void loadNewJoke() {
-        fetchJokeFromApi();
+    public Observable<JokeEntity> loadNewJoke() {
+        TwitterApi service = retrofit.create(TwitterApi.class);
+        return service.getJoke()
+                .subscribeOn(Schedulers.io())
+                .doOnNext(entity -> lastInsertedId = mDatabase.jokeDao().insert(entity));
     }
 
     private interface TwitterApi {

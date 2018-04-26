@@ -24,15 +24,17 @@ public class JokeActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FragmentManager fragMan = getSupportFragmentManager();
-        FragmentTransaction fragTransaction = fragMan.beginTransaction();
+        // Add product list fragment if this is first creation
+        if (savedInstanceState == null) {
+            FragmentManager fragMan = getSupportFragmentManager();
+            FragmentTransaction fragTransaction = fragMan.beginTransaction();
 
-        Bundle bundle = new Bundle();
-        bundle.putInt(JokeFragment.KEY_JOKE_ID, 11);
-        Fragment myFrag = new JokeFragment();
-        myFrag.setArguments(bundle);
-        fragTransaction.replace(binding.frameContent.getId(), myFrag);
-        fragTransaction.commit();
+            Bundle bundle = new Bundle();
+            bundle.putInt(JokeFragment.KEY_JOKE_ID, 11);
+            Fragment myFrag = new JokeFragment();
+            myFrag.setArguments(bundle);
+            fragTransaction.replace(binding.frameContent.getId(), myFrag).commit();
+        }
     }
 
     @Override

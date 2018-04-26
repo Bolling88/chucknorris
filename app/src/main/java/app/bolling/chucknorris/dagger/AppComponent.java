@@ -4,6 +4,7 @@ import javax.inject.Singleton;
 
 import app.bolling.chucknorris.DataRepository;
 import app.bolling.chucknorris.ui.JokeFragment;
+import app.bolling.chucknorris.ui.JokeViewModel;
 import dagger.Component;
 
 @Singleton
@@ -11,4 +12,5 @@ import dagger.Component;
 public interface AppComponent {
     void inject(DataRepository repository);
     void inject(JokeFragment fragment);
+    void inject(JokeViewModel viewModel);
 }

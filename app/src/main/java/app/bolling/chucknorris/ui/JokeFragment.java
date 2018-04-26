@@ -16,6 +16,7 @@
 
 package app.bolling.chucknorris.ui;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -39,7 +40,6 @@ public class JokeFragment extends Fragment {
 
     @Inject
     ResourceUtil resources;
-    @Inject JokeViewModel model;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,11 +63,14 @@ public class JokeFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        mBinding.button.setOnClickListener(v -> model.onNextJokeClicked());
-        mBinding.fab.setOnClickListener(view -> model.onFavoriteClicked());
+        final JokeViewModel viewModel =
+                ViewModelProviders.of(this).get(JokeViewModel.class);
 
-        //now we can hook up the observables to the view model
-        setUpObservables(model);
+        mBinding.button.setOnClickListener(v -> viewModel.onNextJokeClicked());
+        mBinding.fab.setOnClickListener(view -> viewModel.onFavoriteClicked());
+
+        //now we can hook up the observables to the view viewModel
+        setUpObservables(viewModel);
     }
 
     private void setUpObservables(JokeViewModel model) {
@@ -83,8 +86,15 @@ public class JokeFragment extends Fragment {
             }
         });
 
+        if(model.getObservableJoke().getValue() == null){
+            model.onNextJokeClicked();
+        }else{
+            mBinding.progress.setVisibility(View.GONE);
+            mBinding.button.setVisibility(View.VISIBLE);
+        }
+
         //observe toast events
-        model.getObservableToast().observe(this, text -> Toast.makeText(getContext(), text, Toast.LENGTH_LONG).show());
+        model.getObservableToast().observe(this, text -> Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show());
 
         //visibility events
         model.getLoadingVisibilityEvent().observe(this, visibility -> mBinding.progress.setVisibility(visibility));

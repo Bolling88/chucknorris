@@ -25,7 +25,6 @@ import java.util.List;
 
 import app.bolling.chucknorris.database.model.JokeEntity;
 import io.reactivex.Flowable;
-import io.reactivex.Maybe;
 
 @Dao
 public interface JokeDao {
@@ -40,6 +39,6 @@ public interface JokeDao {
     long insert(JokeEntity joke);
 
     @Query("select * from jokes where id = :jokeId")
-    Maybe<JokeEntity> getJoke(int jokeId);
+    Flowable<JokeEntity> getJoke(String jokeId);
 
 }
