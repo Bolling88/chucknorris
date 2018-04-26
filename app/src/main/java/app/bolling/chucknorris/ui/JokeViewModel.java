@@ -61,10 +61,6 @@ public class JokeViewModel extends AndroidViewModel {
      */
 
     public LiveData<JokeEntity> getObservableJoke() {
-
-
-        //liveData = LiveDataReactiveStreams.fromPublisher(flowable);
-
         return liveData;
     }
 

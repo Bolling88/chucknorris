@@ -80,9 +80,9 @@ public class JokeFragment extends Fragment {
             mBinding.textJoke.setText(jokeEntity.getValue());
             model.onJokeRead();
             if(jokeEntity.isFavourite()){
-                mBinding.fab.setImageResource(R.drawable.ic_favorite_black_24dp);
+                mBinding.fab.setImageResource(R.drawable.ic_favorite_white_24dp);
             }else{
-                mBinding.fab.setImageResource(R.drawable.ic_favorite_border_black_24dp);
+                mBinding.fab.setImageResource(R.drawable.ic_favorite_border_white_24dp);
             }
         });
 
