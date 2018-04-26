@@ -76,6 +76,11 @@ public class JokeFragment extends Fragment {
             //handle UI updates
             mBinding.textJoke.setText(jokeEntity.getValue());
             model.onJokeRead();
+            if(jokeEntity.isFavourite()){
+                mBinding.fab.setImageResource(R.drawable.ic_favorite_black_24dp);
+            }else{
+                mBinding.fab.setImageResource(R.drawable.ic_favorite_border_black_24dp);
+            }
         });
 
         //observe toast events

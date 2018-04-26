@@ -101,8 +101,11 @@ public class JokeViewModel extends AndroidViewModel {
         if (viewedJoke != null) {
             if (viewedJoke.isFavourite()) {
                 toastEvent.setValue(resources.getString(R.string.removed_from_favourites));
+                viewedJoke.setFavourite(false);
             } else {
                 toastEvent.setValue(resources.getString(R.string.removed_added_to_favourites));
+                viewedJoke.setFavourite(true);
+                repository.saveJoke(viewedJoke);
             }
         }
     }
