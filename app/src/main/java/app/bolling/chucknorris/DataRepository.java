@@ -26,7 +26,7 @@ public class DataRepository {
 
     @Inject
     public DataRepository(AppDatabase database, Retrofit retorfit) {
-        BasicApp.component.inject(this);
+        ChuckApp.component.inject(this);
         mDatabase = database;
         this.retrofit = retorfit;
     }

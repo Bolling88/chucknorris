@@ -27,7 +27,7 @@ import android.widget.Toast;
 
 import javax.inject.Inject;
 
-import app.bolling.chucknorris.BasicApp;
+import app.bolling.chucknorris.ChuckApp;
 import app.bolling.chucknorris.R;
 import app.bolling.chucknorris.ResourceUtil;
 import app.bolling.chucknorris.databinding.FragmentMainBinding;
@@ -44,7 +44,7 @@ public class JokeFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        BasicApp.component.inject(this);
+        ChuckApp.component.inject(this);
     }
 
     @Nullable
@@ -63,10 +63,6 @@ public class JokeFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        //create or reference the view model with the above factory
-//        final JokeViewModel model = ViewModelProviders.of(this, factory)
-//                .get(JokeViewModel.class);
-
         mBinding.button.setOnClickListener(v -> model.onNextJokeClicked());
         mBinding.fab.setOnClickListener(view -> model.onFavoriteClicked());
 
@@ -77,34 +73,16 @@ public class JokeFragment extends Fragment {
     private void setUpObservables(JokeViewModel model) {
         //LiveData observable
         model.getObservableJoke().observe(this, jokeEntity -> {
-            //let the view model also get the latest product
-            model.onJokeUpdated();
             //handle UI updates
             mBinding.textJoke.setText(jokeEntity.getValue());
             model.onJokeRead();
         });
 
         //observe toast events
-        model.getObservableToast().observe(this, text -> {
-            Toast.makeText(getContext(), text, Toast.LENGTH_LONG).show();
-        });
+        model.getObservableToast().observe(this, text -> Toast.makeText(getContext(), text, Toast.LENGTH_LONG).show());
 
-        //observe loading visibility events
-        model.getLoadingVisibilityEvent().observe(this, visibility -> {
-            mBinding.progress.setVisibility(visibility);
-        });
-
-        model.getButtonVisibilityEvent().observe(this, visibility -> {
-            mBinding.button.setVisibility(visibility);
-        });
-    }
-
-    /** Creates product fragment for specific product ID */
-    public static JokeFragment forProduct(int productId) {
-        JokeFragment fragment = new JokeFragment();
-        Bundle args = new Bundle();
-        args.putInt(KEY_JOKE_ID, productId);
-        fragment.setArguments(args);
-        return fragment;
+        //visibility events
+        model.getLoadingVisibilityEvent().observe(this, visibility -> mBinding.progress.setVisibility(visibility));
+        model.getButtonVisibilityEvent().observe(this, visibility -> mBinding.button.setVisibility(visibility));
     }
 }

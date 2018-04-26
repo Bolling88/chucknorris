@@ -71,10 +71,6 @@ public class JokeViewModel extends AndroidViewModel {
         return LiveDataReactiveStreams.fromPublisher(flowable);
     }
 
-    public void onJokeUpdated() {
-
-    }
-
     public SingleLiveEvent<String> getObservableToast() {
         return toastEvent;
     }

@@ -26,7 +26,7 @@ import app.bolling.chucknorris.dagger.RoomModule;
 /**
  * Android Application class. Used for accessing singletons.
  */
-public class BasicApp extends Application {
+public class ChuckApp extends Application {
 
     public static AppComponent component;
 
