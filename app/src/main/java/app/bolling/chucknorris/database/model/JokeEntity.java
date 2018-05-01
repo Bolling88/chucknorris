@@ -39,7 +39,6 @@ public class JokeEntity {
     @SerializedName("value")
     @Expose
     private String value;
-    private boolean read;
     private boolean favourite;
 
     public String getIconUrl() {
@@ -72,14 +71,6 @@ public class JokeEntity {
 
     public void setValue(String value) {
         this.value = value;
-    }
-
-    public boolean isRead() {
-        return read;
-    }
-
-    public void setRead(boolean read) {
-        this.read = read;
     }
 
     public boolean isFavourite() {

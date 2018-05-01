@@ -18,6 +18,7 @@ package app.bolling.chucknorris.ui.joke;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
+import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 import android.view.View;
 
@@ -43,7 +44,7 @@ public class JokeViewModel extends AndroidViewModel {
     private SingleLiveEvent<String> toastEvent = new SingleLiveEvent<>();
     private SingleLiveEvent<Integer> loadingVisibilityEvent = new SingleLiveEvent<>();
     private SingleLiveEvent<Integer> buttonVisibilityEvent = new SingleLiveEvent<>();
-    private SingleLiveEvent<JokeEntity> jokeEvent = new SingleLiveEvent<>();
+    private MutableLiveData<JokeEntity> jokeEvent = new MutableLiveData<>();
 
     private JokeEntity viewedJoke;
 
@@ -64,7 +65,7 @@ public class JokeViewModel extends AndroidViewModel {
         return buttonVisibilityEvent;
     }
 
-    public SingleLiveEvent<JokeEntity> getJokeChangedEvent() {
+    public MutableLiveData<JokeEntity> getJokeChangedEvent() {
         return jokeEvent;
     }
 

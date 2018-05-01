@@ -16,7 +16,7 @@ public class RoomModule {
     @Singleton
     @Provides
     AppDatabase providesRoomDatabase(Application app) {
-        return  Room.databaseBuilder(app, AppDatabase.class, "demo-db").build();
+        return  Room.databaseBuilder(app, AppDatabase.class, "chuck-db").fallbackToDestructiveMigration().build();
     }
 
     @Singleton

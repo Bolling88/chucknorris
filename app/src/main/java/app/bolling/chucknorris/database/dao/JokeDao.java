@@ -29,9 +29,6 @@ import io.reactivex.Flowable;
 
 @Dao
 public interface JokeDao {
-    @Query("SELECT * FROM jokes where read = 0")
-    Flowable<JokeEntity> getUnreadJokes();
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(List<JokeEntity> jokes);
 

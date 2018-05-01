@@ -58,8 +58,7 @@ public class DataRepository {
     public Observable<JokeEntity> loadNewJoke() {
         TwitterApi service = retrofit.create(TwitterApi.class);
         return service.getJoke()
-                .subscribeOn(Schedulers.io())
-                .doOnNext(entity -> lastInsertedId = mDatabase.jokeDao().insert(entity));
+                .subscribeOn(Schedulers.io());
     }
 
     public Flowable<List<JokeEntity>> getJokes() {
