@@ -11,6 +11,8 @@ import android.view.MenuItem;
 
 import app.bolling.chucknorris.R;
 import app.bolling.chucknorris.databinding.ActivityJokeBinding;
+import app.bolling.chucknorris.ui.favourite.FavouritesFragment;
+import app.bolling.chucknorris.ui.joke.JokeFragment;
 
 public class JokeActivity extends AppCompatActivity {
 
@@ -45,7 +47,7 @@ public class JokeActivity extends AppCompatActivity {
             case R.id.action_favourites:
                 FragmentManager fragMan = getSupportFragmentManager();
                 FragmentTransaction fragTransaction = fragMan.beginTransaction();
-                fragTransaction.replace(binding.frameContent.getId(), new JokeFragment()).addToBackStack(null).commit();
+                fragTransaction.replace(binding.frameContent.getId(), new FavouritesFragment()).addToBackStack(null).commit();
                 return true;
                 default: return false;
         }

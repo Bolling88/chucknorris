@@ -6,6 +6,6 @@
     <string name="loading_joke">Loading joke...</string>
     <string name="next_joke">Next Joke</string>
     <string name="removed_from_favourites">Removed from favourites</string>
-    <string name="removed_added_to_favourites">Added to favourites</string>
+    <string name="added_to_favourites">Added to favourites</string>
     <string name="favourites">Favourites</string>
 </resources>

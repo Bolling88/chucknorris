@@ -17,6 +17,7 @@
 package app.bolling.chucknorris.database.dao;
 
 import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
@@ -41,4 +42,9 @@ public interface JokeDao {
     @Query("select * from jokes where id = :jokeId")
     Flowable<JokeEntity> getJoke(String jokeId);
 
+    @Query("select * from jokes")
+    Flowable<List<JokeEntity>> getJokes();
+
+    @Delete
+    void deleteJoke(JokeEntity entity);
 }

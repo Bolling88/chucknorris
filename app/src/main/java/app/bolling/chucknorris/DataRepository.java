@@ -1,11 +1,16 @@
 package app.bolling.chucknorris;
 
+import android.util.Log;
+
+import java.util.List;
+
 import javax.inject.Inject;
 
 import app.bolling.chucknorris.database.AppDatabase;
 import app.bolling.chucknorris.database.model.JokeEntity;
 import io.reactivex.Flowable;
 import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.http.GET;
@@ -23,6 +28,7 @@ public class DataRepository {
     private final AppDatabase mDatabase;
     private long lastInsertedId;
     private Flowable newJokeFlowable;
+    private Object jokes;
 
     @Inject
     public DataRepository(AppDatabase database, Retrofit retorfit) {
@@ -54,6 +60,18 @@ public class DataRepository {
         return service.getJoke()
                 .subscribeOn(Schedulers.io())
                 .doOnNext(entity -> lastInsertedId = mDatabase.jokeDao().insert(entity));
+    }
+
+    public Flowable<List<JokeEntity>> getJokes() {
+        return mDatabase.jokeDao().getJokes();
+    }
+
+    public void deleteJoke(JokeEntity viewedJoke) {
+        Observable.just(viewedJoke)
+                .subscribeOn(Schedulers.io())
+                .doOnNext(joke -> mDatabase.jokeDao().deleteJoke(joke))
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(jokeEntity -> Log.d(TAG, "Joke deleted"));
     }
 
     private interface TwitterApi {

@@ -3,9 +3,10 @@ package app.bolling.chucknorris.dagger;
 import javax.inject.Singleton;
 
 import app.bolling.chucknorris.DataRepository;
-import app.bolling.chucknorris.ui.FavouritesFragment;
-import app.bolling.chucknorris.ui.JokeFragment;
-import app.bolling.chucknorris.ui.JokeViewModel;
+import app.bolling.chucknorris.ui.favourite.FavouriteViewModel;
+import app.bolling.chucknorris.ui.favourite.FavouritesFragment;
+import app.bolling.chucknorris.ui.joke.JokeFragment;
+import app.bolling.chucknorris.ui.joke.JokeViewModel;
 import dagger.Component;
 
 @Singleton
@@ -15,4 +16,5 @@ public interface AppComponent {
     void inject(JokeFragment fragment);
     void inject(JokeViewModel viewModel);
     void inject(FavouritesFragment fragment);
+    void inject(FavouriteViewModel viewModel);
 }
