@@ -62,6 +62,7 @@ public class JokeFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        getActivity().setTitle(resources.getString(R.string.app_name));
 
         final JokeViewModel viewModel =
                 ViewModelProviders.of(this).get(JokeViewModel.class);

@@ -10,26 +10,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dc61d027-9256-4786-981c-9f1ea9378786" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_cardview_v7_27_1_1.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/toggle_favourite.xml" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/resourceHashesCache.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/resourceHashesCache.bin" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.bin" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.lock" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/app/bolling/chucknorris/DataRepository.java" afterPath="$PROJECT_DIR$/app/src/main/java/app/bolling/chucknorris/DataRepository.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/app/bolling/chucknorris/database/dao/JokeDao.java" afterPath="$PROJECT_DIR$/app/src/main/java/app/bolling/chucknorris/database/dao/JokeDao.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/app/bolling/chucknorris/ui/JokeActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/app/bolling/chucknorris/ui/JokeActivity.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/app/bolling/chucknorris/ui/JokeClickCallback.java" afterPath="$PROJECT_DIR$/app/src/main/java/app/bolling/chucknorris/ui/favourite/JokeAdapterCallbacks.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/app/bolling/chucknorris/ui/favourite/FavouriteAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/app/bolling/chucknorris/ui/favourite/FavouriteAdapter.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/app/bolling/chucknorris/ui/favourite/FavouriteViewModel.java" afterPath="$PROJECT_DIR$/app/src/main/java/app/bolling/chucknorris/ui/favourite/FavouriteViewModel.java" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/app/bolling/chucknorris/ui/favourite/FavouritesFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/app/bolling/chucknorris/ui/favourite/FavouritesFragment.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/joke_item.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/joke_item.xml" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/app/bolling/chucknorris/ui/joke/JokeFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/app/bolling/chucknorris/ui/joke/JokeFragment.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_main.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_main.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -59,114 +48,53 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="FavouriteViewModel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/app/bolling/chucknorris/ui/favourite/FavouriteViewModel.java">
+      <file leaf-file-name="JokeFragment.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/app/bolling/chucknorris/ui/joke/JokeFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="713">
-              <caret line="83" column="42" lean-forward="false" selection-start-line="83" selection-start-column="42" selection-end-line="83" selection-end-column="42" />
+            <state relative-caret-position="7">
+              <caret line="54" column="69" lean-forward="false" selection-start-line="54" selection-start-column="69" selection-end-line="54" selection-end-column="69" />
               <folding>
-                <element signature="e#2646#2647#0" expanded="true" />
-                <element signature="e#2701#2702#0" expanded="true" />
+                <element signature="e#2156#2194#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DataRepository.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/app/bolling/chucknorris/DataRepository.java">
+      <file leaf-file-name="fragment_main.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_main.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="439">
-              <caret line="69" column="35" lean-forward="false" selection-start-line="69" selection-start-column="35" selection-end-line="69" selection-end-column="35" />
+            <state relative-caret-position="354">
+              <caret line="54" column="44" lean-forward="true" selection-start-line="54" selection-start-column="44" selection-end-line="54" selection-end-column="44" />
               <folding />
             </state>
+          </provider>
+          <provider editor-type-id="android-designer2">
+            <state />
           </provider>
         </entry>
       </file>
       <file leaf-file-name="JokeActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/app/bolling/chucknorris/ui/JokeActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="278">
-              <caret line="41" column="42" lean-forward="false" selection-start-line="41" selection-start-column="42" selection-end-line="41" selection-end-column="42" />
+            <state relative-caret-position="165">
+              <caret line="23" column="70" lean-forward="false" selection-start-line="23" selection-start-column="70" selection-end-line="23" selection-end-column="70" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ic_favorite_white_24dp.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_favorite_white_24dp.xml">
+      <file leaf-file-name="activity_joke.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_joke.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="toggle_favourite.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/toggle_favourite.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="53" lean-forward="false" selection-start-line="4" selection-start-column="53" selection-end-line="4" selection-end-column="53" />
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer2">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JokeDao.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/app/bolling/chucknorris/database/dao/JokeDao.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="47" column="49" lean-forward="false" selection-start-line="47" selection-start-column="49" selection-end-line="47" selection-end-column="49" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JokeEntity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/app/bolling/chucknorris/database/model/JokeEntity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="41" column="29" lean-forward="false" selection-start-line="41" selection-start-column="20" selection-end-line="41" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Completable.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.reactivex.rxjava2/rxjava/2.1.9/890fc9ef77d78ac270f322b024c0e660a8f57ea0/rxjava-2.1.9-sources.jar!/io/reactivex/Completable.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="262">
-              <caret line="316" column="30" lean-forward="false" selection-start-line="316" selection-start-column="30" selection-end-line="316" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="joke_item.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/joke_item.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="42" column="39" lean-forward="false" selection-start-line="42" selection-start-column="39" selection-end-line="42" selection-end-column="39" />
+            <state relative-caret-position="420">
+              <caret line="28" column="32" lean-forward="false" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
               <folding>
-                <element signature="e#1481#1503#0" expanded="true" />
+                <element signature="e#1260#1300#0" expanded="true" />
               </folding>
             </state>
           </provider>
           <provider editor-type-id="android-designer2">
             <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ic_favorite_border_white_24dp.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_favorite_border_white_24dp.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="36" lean-forward="false" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="36" />
-              <folding />
-            </state>
           </provider>
         </entry>
       </file>
@@ -2359,20 +2287,17 @@
         <option value="$PROJECT_DIR$/app/src/main/java/app/bolling/chucknorris/ui/FavouriteAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/app/bolling/chucknorris/dagger/AppComponent.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_favourite.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/app/bolling/chucknorris/ui/joke/JokeFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/app/bolling/chucknorris/ui/joke/JokeViewModel.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/app/bolling/chucknorris/database/model/JokeEntity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/app/bolling/chucknorris/database/AppDatabase.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/app/bolling/chucknorris/dagger/RoomModule.java" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/ic_toggle_bg.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/toggle_favourite.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/app/bolling/chucknorris/ui/favourite/FavClickCallback.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/app/bolling/chucknorris/ui/favourite/JokeAdapterCallbacks.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/app/bolling/chucknorris/ui/favourite/FavouriteAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/app/bolling/chucknorris/ui/favourite/FavouritesFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/app/bolling/chucknorris/ui/favourite/FavouriteViewModel.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/app/bolling/chucknorris/database/dao/JokeDao.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/app/bolling/chucknorris/DataRepository.java" />
@@ -2380,6 +2305,9 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/joke_item.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/ic_favorite_border_white_24dp.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/ic_favorite_white_24dp.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/app/bolling/chucknorris/ui/favourite/FavouritesFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/app/bolling/chucknorris/ui/joke/JokeFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_main.xml" />
       </list>
     </option>
   </component>
@@ -2489,6 +2417,28 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="chucknorris" type="462c0819:PsiDirectoryNode" />
               <item name="ui" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chucknorris" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chucknorris" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="chucknorris" type="462c0819:PsiDirectoryNode" />
+              <item name="ui" type="462c0819:PsiDirectoryNode" />
+              <item name="favourite" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chucknorris" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chucknorris" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="chucknorris" type="462c0819:PsiDirectoryNode" />
+              <item name="ui" type="462c0819:PsiDirectoryNode" />
+              <item name="joke" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="chucknorris" type="b2602c69:ProjectViewProjectNode" />
@@ -2859,20 +2809,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.4.0/451207353948708405a08287e2a315c3f23553fe/retrofit-2.4.0-sources.jar!/retrofit2/Retrofit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="59" column="19" lean-forward="false" selection-start-line="59" selection-start-column="19" selection-end-line="59" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build/generated/source/apt/debug/app/bolling/chucknorris/dagger/ApplicationModule_ProvideRetrofitFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/build/generated/source/apt/debug/app/bolling/chucknorris/DataRepository_Factory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -3074,30 +3010,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_main.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="34" lean-forward="false" selection-start-line="28" selection-start-column="34" selection-end-line="28" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/app/bolling/chucknorris/ui/favourite/FavClickCallback.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/java/app/bolling/chucknorris/ResourceUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/app/bolling/chucknorris/ui/joke/JokeFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="54" column="69" lean-forward="false" selection-start-line="54" selection-start-column="69" selection-end-line="54" selection-end-column="69" />
           <folding />
         </state>
       </provider>
@@ -3129,21 +3046,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/app/bolling/chucknorris/ui/favourite/FavouritesFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="413">
-          <caret line="89" column="28" lean-forward="false" selection-start-line="89" selection-start-column="28" selection-end-line="89" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/app/bolling/chucknorris/ui/favourite/FavouriteViewModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="713">
           <caret line="83" column="42" lean-forward="false" selection-start-line="83" selection-start-column="42" selection-end-line="83" selection-end-column="42" />
           <folding>
-            <element signature="e#2646#2647#0" expanded="true" />
-            <element signature="e#2701#2702#0" expanded="true" />
+            <element signature="e#2646#2647#0" expanded="false" />
+            <element signature="e#2701#2702#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3180,14 +3089,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/app/bolling/chucknorris/ui/JokeActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="41" column="42" lean-forward="false" selection-start-line="41" selection-start-column="42" selection-end-line="41" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/toggle_favourite.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -3204,7 +3105,7 @@
         <state relative-caret-position="294">
           <caret line="42" column="39" lean-forward="false" selection-start-line="42" selection-start-column="39" selection-end-line="42" selection-end-column="39" />
           <folding>
-            <element signature="e#1481#1503#0" expanded="true" />
+            <element signature="e#1481#1503#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3223,8 +3124,68 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_favorite_white_24dp.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
-          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.support/support-fragment/27.1.1/94732bda44fba11302c58e459b7c1f47e7521bf9/support-fragment-27.1.1-sources.jar!/android/support/v4/app/Fragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="1700" column="16" lean-forward="false" selection-start-line="1700" selection-start-column="16" selection-end-line="1700" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/app/bolling/chucknorris/ui/favourite/FavouritesFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="80" column="8" lean-forward="false" selection-start-line="80" selection-start-column="8" selection-end-line="80" selection-end-column="73" />
+          <folding>
+            <element signature="e#2890#2930#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_joke.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="28" column="32" lean-forward="false" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
+          <folding>
+            <element signature="e#1260#1300#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/app/bolling/chucknorris/ui/JokeActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="23" column="70" lean-forward="false" selection-start-line="23" selection-start-column="70" selection-end-line="23" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_main.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="354">
+          <caret line="54" column="44" lean-forward="true" selection-start-line="54" selection-start-column="44" selection-end-line="54" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/app/bolling/chucknorris/ui/joke/JokeFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7">
+          <caret line="54" column="69" lean-forward="false" selection-start-line="54" selection-start-column="69" selection-end-line="54" selection-end-column="69" />
+          <folding>
+            <element signature="e#2156#2194#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

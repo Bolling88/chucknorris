@@ -24,6 +24,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -50,6 +52,7 @@ public class FavouritesFragment extends Fragment implements JokeAdapterCallbacks
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
         ChuckApp.component.inject(this);
         adapter = new FavouriteAdapter(this);
     }
@@ -75,12 +78,18 @@ public class FavouritesFragment extends Fragment implements JokeAdapterCallbacks
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
+        getActivity().setTitle(resources.getString(R.string.favourites));
         viewModel =
                 ViewModelProviders.of(this).get(FavouriteViewModel.class);
 
         //now we can hook up the observables to the view viewModel
         setUpObservables(viewModel);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        menu.clear();
     }
 
     @Override
