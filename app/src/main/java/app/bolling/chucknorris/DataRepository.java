@@ -8,6 +8,7 @@ import javax.inject.Inject;
 
 import app.bolling.chucknorris.database.AppDatabase;
 import app.bolling.chucknorris.database.model.JokeEntity;
+import io.reactivex.Completable;
 import io.reactivex.Flowable;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -71,6 +72,12 @@ public class DataRepository {
                 .doOnNext(joke -> mDatabase.jokeDao().deleteJoke(joke))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(jokeEntity -> Log.d(TAG, "Joke deleted"));
+    }
+
+    public void deleteAllNonfavouriteJokes() {
+        Completable.fromAction(() -> mDatabase.jokeDao().deleteAllNonfavouriteJokes())
+                .subscribeOn(Schedulers.io())
+                .subscribe();
     }
 
     private interface TwitterApi {

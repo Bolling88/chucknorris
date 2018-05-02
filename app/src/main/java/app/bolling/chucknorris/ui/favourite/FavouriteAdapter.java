@@ -28,16 +28,15 @@ import java.util.List;
 import app.bolling.chucknorris.R;
 import app.bolling.chucknorris.database.model.JokeEntity;
 import app.bolling.chucknorris.databinding.JokeItemBinding;
-import app.bolling.chucknorris.ui.JokeClickCallback;
 
 public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.FavouriteViewHolder> {
 
     List<JokeEntity> jokeList;
 
     @Nullable
-    private final JokeClickCallback mJokeClickCallback;
+    private final JokeAdapterCallbacks mJokeClickCallback;
 
-    protected FavouriteAdapter(JokeClickCallback callback) {
+    protected FavouriteAdapter(JokeAdapterCallbacks callback) {
         mJokeClickCallback = callback;
     }
 

@@ -33,9 +33,10 @@ import javax.inject.Inject;
 import app.bolling.chucknorris.ChuckApp;
 import app.bolling.chucknorris.R;
 import app.bolling.chucknorris.ResourceUtil;
+import app.bolling.chucknorris.database.model.JokeEntity;
 import app.bolling.chucknorris.databinding.FragmentFavouriteBinding;
 
-public class FavouritesFragment extends Fragment {
+public class FavouritesFragment extends Fragment implements JokeAdapterCallbacks {
 
     public static final String KEY_JOKE_ID = "product_id";
     private FragmentFavouriteBinding mBinding;
@@ -44,15 +45,13 @@ public class FavouritesFragment extends Fragment {
     ResourceUtil resources;
 
     private FavouriteAdapter adapter;
+    private FavouriteViewModel viewModel;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ChuckApp.component.inject(this);
-
-        adapter = new FavouriteAdapter(joke -> {
-
-        });
+        adapter = new FavouriteAdapter(this);
     }
 
     @Nullable
@@ -77,11 +76,18 @@ public class FavouritesFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        final FavouriteViewModel viewModel =
+        viewModel =
                 ViewModelProviders.of(this).get(FavouriteViewModel.class);
 
         //now we can hook up the observables to the view viewModel
         setUpObservables(viewModel);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (viewModel != null)
+            viewModel.onPause();
     }
 
     private void setUpObservables(FavouriteViewModel model) {
@@ -94,5 +100,11 @@ public class FavouritesFragment extends Fragment {
 
         //observe toast events
         model.getObservableToast().observe(this, text -> Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show());
+    }
+
+    @Override
+    public void onFavClicked(JokeEntity joke) {
+        if (viewModel != null)
+            viewModel.onFavoriteClicked(joke);
     }
 }

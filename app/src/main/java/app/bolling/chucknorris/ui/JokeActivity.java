@@ -32,6 +32,16 @@ public class JokeActivity extends AppCompatActivity {
             FragmentTransaction fragTransaction = fragMan.beginTransaction();
             fragTransaction.replace(binding.frameContent.getId(), new JokeFragment()).commit();
         }
+
+        getSupportFragmentManager().addOnBackStackChangedListener(
+                () -> {
+                    if(getSupportFragmentManager().getBackStackEntryCount() > 0){
+                        //show back arrow
+                        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                    }else{
+                        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+                    }
+                });
     }
 
     @Override
@@ -43,13 +53,17 @@ public class JokeActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.action_favourites:
                 FragmentManager fragMan = getSupportFragmentManager();
                 FragmentTransaction fragTransaction = fragMan.beginTransaction();
                 fragTransaction.replace(binding.frameContent.getId(), new FavouritesFragment()).addToBackStack(null).commit();
                 return true;
-                default: return false;
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return false;
         }
     }
 }

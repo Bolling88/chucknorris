@@ -43,10 +43,7 @@ public class FavouriteViewModel extends AndroidViewModel {
 
     //single live events
     private SingleLiveEvent<String> toastEvent = new SingleLiveEvent<>();
-    private SingleLiveEvent<Integer> loadingVisibilityEvent = new SingleLiveEvent<>();
-    private SingleLiveEvent<Integer> buttonVisibilityEvent = new SingleLiveEvent<>();
 
-    private JokeEntity viewedJoke;
     private LiveData<List<JokeEntity>> liveData;
 
     public FavouriteViewModel(@NonNull Application application) {
@@ -69,25 +66,21 @@ public class FavouriteViewModel extends AndroidViewModel {
         return toastEvent;
     }
 
-    public SingleLiveEvent<Integer> getLoadingVisibilityEvent() {
-        return loadingVisibilityEvent;
-    }
-
-    public SingleLiveEvent<Integer> getButtonVisibilityEvent() {
-        return buttonVisibilityEvent;
-    }
-
-    public void onFavoriteClicked() {
-        if (viewedJoke != null) {
-            if (viewedJoke.isFavourite()) {
+    public void onFavoriteClicked(JokeEntity joke) {
+        if (joke != null) {
+            if (joke.isFavourite()) {
                 toastEvent.setValue(resources.getString(R.string.removed_from_favourites));
-                viewedJoke.setFavourite(false);
-                repository.saveJoke(viewedJoke);
+                joke.setFavourite(false);
+                repository.saveJoke(joke);
             } else {
                 toastEvent.setValue(resources.getString(R.string.added_to_favourites));
-                viewedJoke.setFavourite(true);
-                repository.saveJoke(viewedJoke);
+                joke.setFavourite(true);
+                repository.saveJoke(joke);
             }
         }
+    }
+
+    public void onPause() {
+        repository.deleteAllNonfavouriteJokes();
     }
 }

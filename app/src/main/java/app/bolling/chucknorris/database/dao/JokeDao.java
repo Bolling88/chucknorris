@@ -44,4 +44,7 @@ public interface JokeDao {
 
     @Delete
     void deleteJoke(JokeEntity entity);
+
+    @Query("DELETE FROM jokes WHERE favourite = 0")
+    void deleteAllNonfavouriteJokes();
 }
