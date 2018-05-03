@@ -102,8 +102,13 @@ public class FavouritesFragment extends Fragment implements JokeAdapterCallbacks
     private void setUpObservables(FavouriteViewModel model) {
         //LiveData observable
         model.getObservableJokes().observe(this, jokes -> {
-            if (jokes != null && jokes.size() > 0) {
-                adapter.setJokes(jokes);
+            adapter.setJokes(jokes);
+            if(jokes == null || jokes.size() == 0){
+                mBinding.imageBackground.setVisibility(View.VISIBLE);
+                mBinding.textJoke.setVisibility(View.VISIBLE);
+            }else{
+                mBinding.imageBackground.setVisibility(View.GONE);
+                mBinding.textJoke.setVisibility(View.GONE);
             }
         });
 
