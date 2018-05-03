@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package app.bolling.chucknorris.joke;
+package app.bolling.chucknorris.ui.joke;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
@@ -26,14 +26,26 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import javax.inject.Inject;
+
+import app.bolling.chucknorris.ChuckApp;
 import app.bolling.chucknorris.R;
+import app.bolling.chucknorris.ResourceUtil;
 import app.bolling.chucknorris.databinding.FragmentMainBinding;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 
 public class JokeFragment extends Fragment {
 
     public static final String KEY_JOKE_ID = "product_id";
     private FragmentMainBinding mBinding;
+
+    @Inject
+    ResourceUtil resources;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        ChuckApp.component.inject(this);
+    }
 
     @Nullable
     @Override
@@ -50,45 +62,42 @@ public class JokeFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        getActivity().setTitle(resources.getString(R.string.app_name));
 
-        //create factory, used to inject dependencies to the view model
-        JokeViewModel.Factory factory = new JokeViewModel.Factory(
-                getActivity().getApplication(), getArguments());
+        final JokeViewModel viewModel =
+                ViewModelProviders.of(this).get(JokeViewModel.class);
 
-        //create or reference the view model with the above factory
-        final JokeViewModel model = ViewModelProviders.of(this, factory)
-                .get(JokeViewModel.class);
+        mBinding.button.setOnClickListener(v -> viewModel.onNextJokeClicked());
+        mBinding.fab.setOnClickListener(view -> viewModel.onFavoriteClicked());
 
-        //now we can hook up the observables to the view model
-        setUpObservables(model);
+        //now we can hook up the observables to the view viewModel
+        setUpObservables(viewModel);
     }
 
     private void setUpObservables(JokeViewModel model) {
-        //Observe joke
-        model.getObservableJoke().observeOn(AndroidSchedulers.mainThread()).subscribe(comicEntity -> {
-            //let the view model also get the latest product
-            model.onJokeUpdated(comicEntity);
+        //LiveData observable
+        model.getJokeChangedEvent().observe(this, jokeEntity -> {
             //handle UI updates
-            mBinding.textJoke.setText(comicEntity.getValue());
+            mBinding.textJoke.setText(jokeEntity.getValue());
+            if(jokeEntity.isFavourite()){
+                mBinding.fab.setImageResource(R.drawable.ic_favorite_white_24dp);
+            }else{
+                mBinding.fab.setImageResource(R.drawable.ic_favorite_border_white_24dp);
+            }
         });
+
+        if(model.getJokeChangedEvent().getValue() == null){
+            model.onNextJokeClicked();
+        }else{
+            mBinding.progress.setVisibility(View.GONE);
+            mBinding.button.setVisibility(View.VISIBLE);
+        }
 
         //observe toast events
-        model.getObservableToast().observe(this, text -> {
-            Toast.makeText(getContext(), text, Toast.LENGTH_LONG).show();
-        });
+        model.getObservableToast().observe(this, text -> Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show());
 
-        //observe loading visibility events
-        model.getObservableLoadingVisibility().observe(this, visibility -> {
-            mBinding.frameLoading.setVisibility(visibility);
-        });
-    }
-
-    /** Creates product fragment for specific product ID */
-    public static JokeFragment forProduct(int productId) {
-        JokeFragment fragment = new JokeFragment();
-        Bundle args = new Bundle();
-        args.putInt(KEY_JOKE_ID, productId);
-        fragment.setArguments(args);
-        return fragment;
+        //visibility events
+        model.getLoadingVisibilityEvent().observe(this, visibility -> mBinding.progress.setVisibility(visibility));
+        model.getButtonVisibilityEvent().observe(this, visibility -> mBinding.button.setVisibility(visibility));
     }
 }

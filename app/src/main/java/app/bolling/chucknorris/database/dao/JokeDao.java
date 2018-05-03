@@ -17,6 +17,7 @@
 package app.bolling.chucknorris.database.dao;
 
 import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
@@ -25,20 +26,25 @@ import java.util.List;
 
 import app.bolling.chucknorris.database.model.JokeEntity;
 import io.reactivex.Flowable;
-import io.reactivex.Maybe;
 
 @Dao
 public interface JokeDao {
-    @Query("SELECT * FROM jokes")
-    Flowable<List<JokeEntity>> getAllQuestions();
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(List<JokeEntity> jokes);
 
+    //return type long, means it will also return the id
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(JokeEntity joke);
+    long insert(JokeEntity joke);
 
     @Query("select * from jokes where id = :jokeId")
-    Maybe<JokeEntity> getJoke(int jokeId);
+    Flowable<JokeEntity> getJoke(String jokeId);
 
+    @Query("select * from jokes")
+    Flowable<List<JokeEntity>> getJokes();
+
+    @Delete
+    void deleteJoke(JokeEntity entity);
+
+    @Query("DELETE FROM jokes WHERE favourite = 0")
+    void deleteAllNonfavouriteJokes();
 }

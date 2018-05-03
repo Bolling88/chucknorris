@@ -18,32 +18,29 @@ package app.bolling.chucknorris;
 
 import android.app.Application;
 
+import com.crashlytics.android.Crashlytics;
+import com.crashlytics.android.answers.Answers;
+
 import app.bolling.chucknorris.dagger.AppComponent;
 import app.bolling.chucknorris.dagger.ApplicationModule;
 import app.bolling.chucknorris.dagger.DaggerAppComponent;
-import app.bolling.chucknorris.database.AppDatabase;
+import app.bolling.chucknorris.dagger.RoomModule;
+import io.fabric.sdk.android.Fabric;
 
 /**
  * Android Application class. Used for accessing singletons.
  */
-public class BasicApp extends Application {
+public class ChuckApp extends Application {
 
     public static AppComponent component;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        Fabric.with(this, new Crashlytics(), new Answers());
 
         component = DaggerAppComponent.builder()
-                .applicationModule(new ApplicationModule(this))
+                .applicationModule(new ApplicationModule(this)).roomModule(new RoomModule())
                 .build();
-    }
-
-    public AppDatabase getDatabase() {
-        return AppDatabase.getInstance(this);
-    }
-
-    public DataRepository getRepository() {
-        return DataRepository.getInstance(getDatabase());
     }
 }
