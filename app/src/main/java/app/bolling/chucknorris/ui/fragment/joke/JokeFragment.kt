@@ -58,8 +58,8 @@ class JokeFragment : Fragment() {
 
         val viewModel = ViewModelProviders.of(this).get(JokeViewModel::class.java)
 
-        mBinding.button.setOnClickListener { v -> viewModel.onNextJokeClicked() }
-        mBinding.fab.setOnClickListener { view -> viewModel.onFavoriteClicked() }
+        mBinding.button.setOnClickListener { viewModel.onNextJokeClicked() }
+        mBinding.fab.setOnClickListener { viewModel.onFavoriteClicked() }
 
         //now we can hook up the observables to the view viewModel
         setUpObservables(viewModel)
@@ -85,21 +85,16 @@ class JokeFragment : Fragment() {
         }
 
         //observe toast events
-        model.observableToast.observe(this, Observer { text -> Toast.makeText(context, text, Toast.LENGTH_SHORT).show() })
+        model.observableToast.observe(this, Observer { text ->
+            Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
+        })
 
         //visibility events
         model.loadingVisibilityEvent.observe(this, Observer { visibility ->
-            run {
-                if (visibility != null) {
-                    mBinding.progress.visibility = visibility
-                }
-            }
+            mBinding.progress.visibility = visibility!!
         })
-        model.buttonVisibilityEvent.observe(this, Observer { visibility -> mBinding.button.visibility = visibility!! })
-    }
-
-    companion object {
-
-        val KEY_JOKE_ID = "product_id"
+        model.buttonVisibilityEvent.observe(this, Observer { visibility ->
+            mBinding.button.visibility = visibility!!
+        })
     }
 }
