@@ -11,7 +11,7 @@
 
         <variable
             name="callback"
-            type="app.bolling.chucknorris.ui.favourite.JokeAdapterCallbacks" />
+            type="app.bolling.chucknorris.ui.fragment.favourite.FavouriteAdapterCallbacks" />
     </data>
 
     <android.support.v7.widget.CardView

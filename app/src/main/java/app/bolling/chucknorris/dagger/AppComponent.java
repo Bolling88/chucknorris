@@ -3,10 +3,10 @@ package app.bolling.chucknorris.dagger;
 import javax.inject.Singleton;
 
 import app.bolling.chucknorris.DataRepository;
-import app.bolling.chucknorris.ui.favourite.FavouriteViewModel;
-import app.bolling.chucknorris.ui.favourite.FavouritesFragment;
-import app.bolling.chucknorris.ui.joke.JokeFragment;
-import app.bolling.chucknorris.ui.joke.JokeViewModel;
+import app.bolling.chucknorris.ui.fragment.favourite.FavouriteViewModel;
+import app.bolling.chucknorris.ui.fragment.favourite.FavouritesFragment;
+import app.bolling.chucknorris.ui.fragment.joke.JokeFragment;
+import app.bolling.chucknorris.ui.fragment.joke.JokeViewModel;
 import dagger.Component;
 
 @Singleton
