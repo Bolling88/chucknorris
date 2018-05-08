@@ -11,8 +11,8 @@ import android.view.MenuItem;
 
 import app.bolling.chucknorris.R;
 import app.bolling.chucknorris.databinding.ActivityJokeBinding;
-import app.bolling.chucknorris.ui.favourite.FavouritesFragment;
-import app.bolling.chucknorris.ui.joke.JokeFragment;
+import app.bolling.chucknorris.ui.fragment.favourite.FavouritesFragment;
+import app.bolling.chucknorris.ui.fragment.joke.JokeFragment;
 
 public class JokeActivity extends AppCompatActivity {
 
