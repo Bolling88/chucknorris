@@ -16,6 +16,7 @@
 
 package app.bolling.chucknorris.ui.fragment.joke
 
+import android.app.Application
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
@@ -26,6 +27,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import app.bolling.chucknorris.ChuckApp
+import app.bolling.chucknorris.DataRepository
 import app.bolling.chucknorris.R
 import app.bolling.chucknorris.ResourceUtil
 import app.bolling.chucknorris.databinding.FragmentMainBinding
@@ -36,6 +38,10 @@ class JokeFragment : Fragment() {
 
     @Inject
     lateinit var resources: ResourceUtil
+    @Inject
+    lateinit var repository: DataRepository
+    @Inject
+    lateinit var application: Application
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,7 +62,7 @@ class JokeFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         activity?.title = resources.getString(R.string.app_name)
 
-        val viewModel = ViewModelProviders.of(this).get(JokeViewModel::class.java)
+        val viewModel = ViewModelProviders.of(this, JokeViewModelFactory(resources, repository, application)).get(JokeViewModel::class.java)
 
         mBinding.button.setOnClickListener { viewModel.onNextJokeClicked() }
         mBinding.fab.setOnClickListener { viewModel.onFavoriteClicked() }

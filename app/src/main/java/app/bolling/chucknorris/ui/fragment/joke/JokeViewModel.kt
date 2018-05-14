@@ -20,17 +20,16 @@ import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
 import android.view.View
-import app.bolling.chucknorris.*
+import app.bolling.chucknorris.DataRepository
+import app.bolling.chucknorris.R
+import app.bolling.chucknorris.ResourceUtil
+import app.bolling.chucknorris.SingleLiveEvent
 import app.bolling.chucknorris.database.model.JokeEntity
 import io.reactivex.android.schedulers.AndroidSchedulers
-import javax.inject.Inject
 
-class JokeViewModel(application: Application) : AndroidViewModel(application) {
 
-    @Inject
-     lateinit var repository: DataRepository
-    @Inject
-     lateinit var resources: ResourceUtil
+
+class JokeViewModel(private val resourceUtil: ResourceUtil, private val repository: DataRepository, application: Application) : AndroidViewModel(application) {
 
     //single live events
     val observableToast = SingleLiveEvent<String>()
@@ -39,11 +38,6 @@ class JokeViewModel(application: Application) : AndroidViewModel(application) {
     val jokeChangedEvent = MutableLiveData<JokeEntity>()
 
     private var viewedJoke: JokeEntity? = null
-
-    init {
-        ChuckApp.component.inject(this)
-    }
-
 
     fun onNextJokeClicked() {
         loadingVisibilityEvent.value = View.VISIBLE
@@ -64,12 +58,12 @@ class JokeViewModel(application: Application) : AndroidViewModel(application) {
                 viewedJoke!!.isFavourite = true
                 repository.saveJoke(viewedJoke)
                 jokeChangedEvent.postValue(viewedJoke)
-                observableToast.setValue(resources!!.getString(R.string.added_to_favourites))
+                observableToast.setValue(resourceUtil.getString(R.string.added_to_favourites))
             } else {
                 viewedJoke!!.isFavourite = false
                 repository.deleteJoke(viewedJoke)
                 jokeChangedEvent.postValue(viewedJoke)
-                observableToast.setValue(resources!!.getString(R.string.removed_from_favourites))
+                observableToast.setValue(resourceUtil.getString(R.string.removed_from_favourites))
             }
         }
     }
