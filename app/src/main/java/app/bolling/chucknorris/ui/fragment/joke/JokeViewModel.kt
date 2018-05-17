@@ -31,6 +31,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 
 class JokeViewModel(private val resourceUtil: ResourceUtil, private val repository: DataRepository, application: Application) : AndroidViewModel(application) {
 
+
+
     //single live events
     val observableToast = SingleLiveEvent<String>()
     val loadingVisibilityEvent = SingleLiveEvent<Int>()
@@ -44,11 +46,11 @@ class JokeViewModel(private val resourceUtil: ResourceUtil, private val reposito
         buttonVisibilityEvent.value = View.GONE
         repository.loadNewJoke()
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { jokeEntity ->
-                    viewedJoke = jokeEntity
+                .subscribe {
+                    viewedJoke = it
                     loadingVisibilityEvent.value = View.GONE
                     buttonVisibilityEvent.value = View.VISIBLE
-                    jokeChangedEvent.postValue(jokeEntity)
+                    jokeChangedEvent.postValue(it)
                 }
     }
 

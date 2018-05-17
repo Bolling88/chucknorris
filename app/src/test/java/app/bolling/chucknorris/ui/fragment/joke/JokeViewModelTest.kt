@@ -4,22 +4,25 @@ import android.app.Application
 import android.arch.core.executor.testing.InstantTaskExecutorRule
 import app.bolling.chucknorris.DataRepository
 import app.bolling.chucknorris.ResourceUtil
-import io.reactivex.android.plugins.RxAndroidPlugins
-import io.reactivex.schedulers.Schedulers
+import app.bolling.chucknorris.database.model.JokeEntity
+import io.automile.automilepro.rules.RxImmediateSchedulerRule
+import io.reactivex.Observable
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TestRule
 import org.mockito.Mock
+import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations
-
-
 
 
 class JokeViewModelTest {
 
+    @Rule
+    @JvmField var testSchedulerRule = RxImmediateSchedulerRule()
     @get:Rule
     var rule: TestRule = InstantTaskExecutorRule()
+
 
     @Mock
     lateinit var app: Application
@@ -34,7 +37,6 @@ class JokeViewModelTest {
     @Before
     fun initTests() {
         MockitoAnnotations.initMocks(this)
-        RxAndroidPlugins.setInitMainThreadSchedulerHandler { scheduler -> Schedulers.trampoline() }
         jokeViewModel = JokeViewModel(resourceUtil, repository, app)
     }
 
@@ -57,6 +59,8 @@ class JokeViewModelTest {
 
     @Test
     fun onNextJokeClicked() {
+        var entity = JokeEntity()
+        `when`(repository.loadNewJoke()).thenReturn(Observable.just(entity))
         jokeViewModel.onNextJokeClicked()
     }
 
