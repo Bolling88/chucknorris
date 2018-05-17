@@ -1,6 +1,6 @@
 package app.bolling.chucknorris.dagger
 
-import app.bolling.chucknorris.DataRepository
+import app.bolling.chucknorris.util.DataRepository
 import app.bolling.chucknorris.ui.fragment.favourite.FavouriteViewModel
 import app.bolling.chucknorris.ui.fragment.favourite.FavouritesFragment
 import app.bolling.chucknorris.ui.fragment.joke.JokeFragment

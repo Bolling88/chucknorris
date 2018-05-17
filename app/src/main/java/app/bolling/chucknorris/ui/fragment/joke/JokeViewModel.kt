@@ -20,10 +20,10 @@ import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
 import android.view.View
-import app.bolling.chucknorris.DataRepository
+import app.bolling.chucknorris.util.DataRepository
 import app.bolling.chucknorris.R
-import app.bolling.chucknorris.ResourceUtil
-import app.bolling.chucknorris.SingleLiveEvent
+import app.bolling.chucknorris.util.ResourceUtil
+import app.bolling.chucknorris.util.SingleLiveEvent
 import app.bolling.chucknorris.database.model.JokeEntity
 import io.reactivex.android.schedulers.AndroidSchedulers
 

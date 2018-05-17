@@ -27,9 +27,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import app.bolling.chucknorris.ChuckApp
-import app.bolling.chucknorris.DataRepository
+import app.bolling.chucknorris.util.DataRepository
 import app.bolling.chucknorris.R
-import app.bolling.chucknorris.ResourceUtil
+import app.bolling.chucknorris.util.ResourceUtil
 import app.bolling.chucknorris.databinding.FragmentMainBinding
 import javax.inject.Inject
 

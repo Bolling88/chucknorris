@@ -2,8 +2,8 @@ package app.bolling.chucknorris.ui.fragment.joke
 
 import android.app.Application
 import android.arch.core.executor.testing.InstantTaskExecutorRule
-import app.bolling.chucknorris.DataRepository
-import app.bolling.chucknorris.ResourceUtil
+import app.bolling.chucknorris.util.DataRepository
+import app.bolling.chucknorris.util.ResourceUtil
 import app.bolling.chucknorris.database.model.JokeEntity
 import io.automile.automilepro.rules.RxImmediateSchedulerRule
 import io.reactivex.Observable

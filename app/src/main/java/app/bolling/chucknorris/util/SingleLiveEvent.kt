@@ -1,4 +1,4 @@
-package app.bolling.chucknorris
+package app.bolling.chucknorris.util
 
 import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.MutableLiveData

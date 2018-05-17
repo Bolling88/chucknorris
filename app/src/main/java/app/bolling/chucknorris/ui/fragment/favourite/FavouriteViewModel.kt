@@ -22,6 +22,9 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.LiveDataReactiveStreams
 import app.bolling.chucknorris.*
 import app.bolling.chucknorris.database.model.JokeEntity
+import app.bolling.chucknorris.util.DataRepository
+import app.bolling.chucknorris.util.ResourceUtil
+import app.bolling.chucknorris.util.SingleLiveEvent
 import javax.inject.Inject
 
 class FavouriteViewModel(application: Application) : AndroidViewModel(application) {

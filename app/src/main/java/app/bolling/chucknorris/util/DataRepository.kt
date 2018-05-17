@@ -1,6 +1,7 @@
-package app.bolling.chucknorris
+package app.bolling.chucknorris.util
 
 import android.util.Log
+import app.bolling.chucknorris.ChuckApp
 import app.bolling.chucknorris.database.AppDatabase
 import app.bolling.chucknorris.database.model.JokeEntity
 import io.reactivex.Completable

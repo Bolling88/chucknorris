@@ -26,7 +26,7 @@ import android.view.*
 import android.widget.Toast
 import app.bolling.chucknorris.ChuckApp
 import app.bolling.chucknorris.R
-import app.bolling.chucknorris.ResourceUtil
+import app.bolling.chucknorris.util.ResourceUtil
 import app.bolling.chucknorris.database.model.JokeEntity
 import app.bolling.chucknorris.databinding.FragmentFavouriteBinding
 import javax.inject.Inject

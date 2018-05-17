@@ -1,4 +1,4 @@
-package app.bolling.chucknorris
+package app.bolling.chucknorris.util
 
 import android.app.Application
 import android.graphics.drawable.Drawable
