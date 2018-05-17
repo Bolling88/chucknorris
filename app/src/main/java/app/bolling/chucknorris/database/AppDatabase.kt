@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-package app.bolling.chucknorris.database;
+package app.bolling.chucknorris.database
 
-import android.arch.persistence.room.Database;
-import android.arch.persistence.room.RoomDatabase;
-import android.arch.persistence.room.TypeConverters;
-import android.support.annotation.VisibleForTesting;
+import android.arch.persistence.room.Database
+import android.arch.persistence.room.RoomDatabase
+import android.arch.persistence.room.TypeConverters
+import android.support.annotation.VisibleForTesting
 
-import app.bolling.chucknorris.database.converter.DateConverter;
-import app.bolling.chucknorris.database.dao.JokeDao;
-import app.bolling.chucknorris.database.model.JokeEntity;
+import app.bolling.chucknorris.database.converter.DateConverter
+import app.bolling.chucknorris.database.dao.JokeDao
+import app.bolling.chucknorris.database.model.JokeEntity
 
-@Database(entities = {JokeEntity.class}, version = 5, exportSchema = false)
-@TypeConverters(DateConverter.class)
-public abstract class AppDatabase extends RoomDatabase {
+@Database(entities = arrayOf(JokeEntity::class), version = 7, exportSchema = false)
+@TypeConverters(DateConverter::class)
+abstract class AppDatabase : RoomDatabase() {
 
     @VisibleForTesting
-    public abstract JokeDao jokeDao();
+    abstract fun jokeDao(): JokeDao
 }

@@ -14,20 +14,28 @@
  * limitations under the License.
  */
 
-package app.bolling.chucknorris.database.converter;
+package app.bolling.chucknorris.database.model
 
-import android.arch.persistence.room.TypeConverter;
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.PrimaryKey
 
-import java.util.Date;
+import com.google.gson.annotations.Expose
+import com.google.gson.annotations.SerializedName
 
-public class DateConverter {
-    @TypeConverter
-    public static Date toDate(Long timestamp) {
-        return timestamp == null ? null : new Date(timestamp);
-    }
-
-    @TypeConverter
-    public static Long toTimestamp(Date date) {
-        return date == null ? null : date.getTime();
-    }
+@Entity(tableName = "jokes")
+class JokeEntity {
+    @SerializedName("icon_url")
+    @Expose
+    var iconUrl: String? = null
+    @PrimaryKey
+    @SerializedName("id")
+    @Expose
+    lateinit var id: String
+    @SerializedName("url")
+    @Expose
+    var url: String? = null
+    @SerializedName("value")
+    @Expose
+    var value: String? = null
+    var isFavourite: Boolean = false
 }

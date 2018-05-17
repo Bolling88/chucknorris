@@ -14,37 +14,31 @@
  * limitations under the License.
  */
 
-package app.bolling.chucknorris.database.dao;
+package app.bolling.chucknorris.database.dao
 
-import android.arch.persistence.room.Dao;
-import android.arch.persistence.room.Delete;
-import android.arch.persistence.room.Insert;
-import android.arch.persistence.room.OnConflictStrategy;
-import android.arch.persistence.room.Query;
-
-import java.util.List;
-
-import app.bolling.chucknorris.database.model.JokeEntity;
-import io.reactivex.Flowable;
+import android.arch.persistence.room.*
+import app.bolling.chucknorris.database.model.JokeEntity
+import io.reactivex.Flowable
 
 @Dao
-public interface JokeDao {
+interface JokeDao {
+
+    @Query("select * from jokes")
+    fun getJokes(): Flowable<List<JokeEntity>>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAll(List<JokeEntity> jokes);
+    fun insertAll(jokes: List<JokeEntity>)
 
     //return type long, means it will also return the id
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    long insert(JokeEntity joke);
+    fun insert(joke: JokeEntity): Long
 
     @Query("select * from jokes where id = :jokeId")
-    Flowable<JokeEntity> getJoke(String jokeId);
-
-    @Query("select * from jokes")
-    Flowable<List<JokeEntity>> getJokes();
+    fun getJoke(jokeId: String): Flowable<JokeEntity>
 
     @Delete
-    void deleteJoke(JokeEntity entity);
+    fun deleteJoke(entity: JokeEntity)
 
-    @Query("DELETE FROM jokes WHERE favourite = 0")
-    void deleteAllNonfavouriteJokes();
+    @Query("DELETE FROM jokes WHERE isFavourite = 0")
+    fun deleteAllNonfavouriteJokes()
 }

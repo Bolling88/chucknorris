@@ -18,8 +18,8 @@ import org.mockito.MockitoAnnotations
 
 class JokeViewModelTest {
 
-    @Rule
-    @JvmField var testSchedulerRule = RxImmediateSchedulerRule()
+    @get:Rule
+    var testSchedulerRule = RxImmediateSchedulerRule()
     @get:Rule
     var rule: TestRule = InstantTaskExecutorRule()
 

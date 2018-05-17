@@ -58,12 +58,12 @@ class JokeViewModel(private val resourceUtil: ResourceUtil, private val reposito
         if (viewedJoke != null) {
             if (!viewedJoke!!.isFavourite) {
                 viewedJoke!!.isFavourite = true
-                repository.saveJoke(viewedJoke)
+                repository.saveJoke(viewedJoke!!)
                 jokeChangedEvent.postValue(viewedJoke)
                 observableToast.setValue(resourceUtil.getString(R.string.added_to_favourites))
             } else {
                 viewedJoke!!.isFavourite = false
-                repository.deleteJoke(viewedJoke)
+                repository.deleteJoke(viewedJoke!!)
                 jokeChangedEvent.postValue(viewedJoke)
                 observableToast.setValue(resourceUtil.getString(R.string.removed_from_favourites))
             }
